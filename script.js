@@ -7,6 +7,7 @@ $(document).ready(function () {
   var pole2 = $('#pole2')
   var pole3 = $('#pole3')
   var selectedRing
+  var ringIsSelected = false
 
   pole1.on('click', selectPole.bind(null, 1))
   pole2.on('click', selectPole.bind(null, 2))
@@ -15,15 +16,34 @@ $(document).ready(function () {
   function selectPole (num) {
     switch (num) {
       case 1:
-        selectedRing = $(' #pole1 div:last-child')
-        selectedRing.detach()
+        if (!ringIsSelected) {
+          ringIsSelected = true
+          selectedRing = $(' #pole1 div:last-child')
+          selectedRing.detach()
+        } else {
+          pole1.append(selectedRing)
+          ringIsSelected = false
+        }
         break
       case 2:
-      selectedRing = $(' #pole1 div:last-child')
-      selectedRing.detach()
+        if (!ringIsSelected) {
+          ringIsSelected = true
+          selectedRing = $(' #pole2 div:last-child')
+          selectedRing.detach()
+        } else {
+          pole2.append(selectedRing)
+          ringIsSelected = false
+        }
+        break
       case 3:
-      selectedRing = $(' #pole1 div:last-child')
-      selectedRing.detach()
+        if (!ringIsSelected) {
+          ringIsSelected = true
+          selectedRing = $(' #pole3 div:last-child')
+          selectedRing.detach()
+        } else {
+          pole3.append(selectedRing)
+          ringIsSelected = false
+        }
         break
     }
   }
