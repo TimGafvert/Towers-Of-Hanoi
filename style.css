@@ -1,0 +1,18 @@
+body {
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background: #990012;
+  color: #FFFFFF;
+  border-radius: 10px;
+  font: 14pt Comic Sans MS;
+  text-align: center;
+  line-height: 100px;
+}
