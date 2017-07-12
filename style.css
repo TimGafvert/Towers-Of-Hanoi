@@ -1,13 +1,32 @@
 body {
   min-height: 100vh;
   margin: 0 auto;
+  font: 12pt Comic Sans MS;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#ringSmall {
+  width: 150px;
+  height: 100px;
+}
+#ringMedium {
+  width: 200px;
+  height: 133px;
+}
+#ringMedium2 {
+  width: 250px;
+  height: 166px;
+}
+#ringLarge {
+  width: 250px;
+  height: 166px;
+
 }
 
+
 div {
-  width: 100px;
+  width: 150px;
   height: 100px;
   background: #990012;
   color: #FFFFFF;
@@ -15,4 +34,13 @@ div {
   font: 14pt Comic Sans MS;
   text-align: center;
   line-height: 100px;
+  margin: 0 auto;
+}
+.pole {
+background: #D3D3D3;
+width: 300px;
+height: 800px;
+margin: 0 auto;
+display: flex;
+flex-direction: column-reverse;
 }
