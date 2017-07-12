@@ -6,45 +6,65 @@ $(document).ready(function () {
   var pole1 = $('#pole1')
   var pole2 = $('#pole2')
   var pole3 = $('#pole3')
+  var selectedPole
   var selectedRing
+  var comparedRing
   var ringIsSelected = false
+
+
+  console.log(($(' #pole3 div:last-child').toString()))
 
   pole1.on('click', selectPole.bind(null, 1))
   pole2.on('click', selectPole.bind(null, 2))
   pole3.on('click', selectPole.bind(null, 3))
+  function checkIfLegal (ring) {
+    this.ring = ring
+
+    if ((this.ring === ringLarge) || (this.ring.toString() === "[object Object]") || ((this.ring === ringMedium) && (selectedRing === ringSmall))) {
+    selectedPole.append(selectedRing)
+    ringIsSelected = false
+    }
+  }
+  comparedRing = $(' #pole1 div:last-child')
 
   function selectPole (num) {
     switch (num) {
       case 1:
+      selectedPole = pole1
         if (!ringIsSelected) {
           ringIsSelected = true
           selectedRing = $(' #pole1 div:last-child')
           selectedRing.detach()
+          console.log(selectedPole)
         } else {
-          pole1.append(selectedRing)
-          ringIsSelected = false
+          checkIfLegal($(' #pole1 div:last-child'))
+
         }
         break
       case 2:
-        if (!ringIsSelected) {
-          ringIsSelected = true
-          selectedRing = $(' #pole2 div:last-child')
-          selectedRing.detach()
-        } else {
-          pole2.append(selectedRing)
-          ringIsSelected = false
-        }
-        break
+      selectedPole = pole2
+      if (!ringIsSelected) {
+        ringIsSelected = true
+        selectedRing = $(' #pole2 div:last-child')
+        selectedRing.detach()
+        console.log(selectedPole)
+      } else {
+        checkIfLegal($(' #pole2 div:last-child'))
+
+      }
+      break
       case 3:
-        if (!ringIsSelected) {
-          ringIsSelected = true
-          selectedRing = $(' #pole3 div:last-child')
-          selectedRing.detach()
-        } else {
-          pole3.append(selectedRing)
-          ringIsSelected = false
-        }
-        break
+      selectedPole = pole3
+      if (!ringIsSelected) {
+        ringIsSelected = true
+        selectedRing = $(' #pole3 div:last-child')
+        selectedRing.detach()
+        console.log(selectedPole)
+      } else {
+        checkIfLegal($(' #pole3 div:last-child'))
+
+      }
+      break
     }
   }
 })

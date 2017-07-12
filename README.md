@@ -9,3 +9,12 @@ GOLD: Drag and drop, score and sound effects
 SILVER: Rings and poles, color and restart button
 
 BRONZE: Basic game working, logic and rules - boxes for rings - no poles
+
+
+
+BRONZE OUTLINE:
+
+        (RING)                       (RING)                      (RING)
+        (RING)                       (RING)                      (RING)
+        (RING)                       (RING)                      (RING)
+--------Pole 1--------       --------Pole 2--------      --------Pole 3--------   
