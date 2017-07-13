@@ -7,11 +7,6 @@ class Logic {
     this.ringIsSelected = false
   }
   // methods
-
-  testPrint (string) {
-    console.log(string)
-  }
-
   selectPoleLogic (num) {
     switch (num) {
       case 1:
