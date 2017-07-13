@@ -1,30 +1,57 @@
+/*@@font-face {
+  font-family: myMonumentA;
+  src: url('MonumentA.ttf') format("truetype");
+}*/
+/*@@font-face {
+  font-family: newFont;
+  scr: url(TejaratchiCaps.ttf);
+}*/
+@@font-face {
+  font-family: newFont;
+  scr: url(LETTERS_.TTF);
+}
+
+
 body {
   min-height: 100vh;
+  background-image: image(images/temple.jpg);
+  background-size:cover;
   margin: 0 auto;
-  font: 12pt Comic Sans MS;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-image: url(images/temple.jpg);
+}
+.ring {
+  background-image: url(images/stoneBricks.jpeg);
+  background-size:cover;
 }
 #ring0 {
+  float: left;
   width: 180px;
-  height: 120px;
+  height: 108px;
 }
 #ring1 {
   width: 210px;
-  height: 140px;
+  height: 126px;
 }
 #ring2 {
   width: 240px;
-  height: 160px;
+  height: 144px;
 }
 #ring3 {
   width: 270px;
-  height: 180px;
+  height: 162px;
 }
 #ring4 {
   width: 300px;
-  height: 200px;
+  height: 180px;
+
+}
+
+p {
+  font-family: newFont;
+  font-size: 50pt
 
 }
 
@@ -32,16 +59,14 @@ body {
 div {
   width: 150px;
   height: 100px;
-  background: #990012;
   color: #FFFFFF;
   border-radius: 10px;
-  font: 14pt Comic Sans MS;
   text-align: center;
-  line-height: 100px;
+  line-height: 00px;
   margin: 0 auto;
 }
 .pole {
-background: #D3D3D3;
+background-image: url(images/pole.png);
 width: 300px;
 height: 800px;
 margin: 0 auto;
