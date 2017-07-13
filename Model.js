@@ -1,58 +1,64 @@
 class Logic {
   constructor () {
-    var pole1 = [0, 1, 2], pole2 = [], pole3 = []
-    var hand = 0
-    var ringIsSelected = false
+    this.pole1 = [0, 1, 2]
+    this.pole2 = []
+    this.pole3 = []
+    this.hand = 0
+    this.ringIsSelected = false
   }
   // methods
+
+  testPrint (string) {
+    console.log(string)
+  }
 
   selectPoleLogic (num) {
     switch (num) {
       case 1:
-        if (!ringIsSelected) {
-          if (pole1.length > 0) {
-            ringIsSelected = true
-            hand = pole1.pop()
+        if (!this.ringIsSelected) {
+          if (this.pole1.length > 0) {
+            this.ringIsSelected = true
+            this.hand = this.pole1.pop()
             return 1
           } else return 0
         } else {
-          if ((pole1.length === 0) || (pole1[pole1.length - 1] < hand)) {
-            ringIsSelected = false
-            pole1.push(hand)
+          if ((this.pole1.length === 0) || (this.pole1[this.pole1.length - 1] < this.hand)) {
+            this.ringIsSelected = false
+            this.pole1.push(this.hand)
             return 2
           }
         }
         break
       case 2:
-      if (!ringIsSelected) {
-        if (pole1.length > 0) {
-          ringIsSelected = true
-          hand = pole1.pop()
-          return 1
-        } else return 0
-      } else {
-        if ((pole1.length === 0) || (pole1[pole1.length - 1] < hand)) {
-          ringIsSelected = false
-          pole1.push(hand)
-          return 2
+        if (!this.ringIsSelected) {
+          if (this.pole2.length > 0) {
+            this.ringIsSelected = true
+            this.hand = this.pole2.pop()
+            return 1
+          } else return 0
+        } else {
+          if ((this.pole2.length === 0) || (this.pole2[this.pole2.length - 1] < this.hand)) {
+            this.ringIsSelected = false
+            this.pole2.push(this.hand)
+            return 2
+          }
         }
-      }
-      break
+        break
       case 3:
-      if (!ringIsSelected) {
-        if (pole1.length > 0) {
-          ringIsSelected = true
-          hand = pole1.pop()
-          return 1
-        } else return 0
-      } else {
-        if ((pole1.length === 0) || (pole1[pole1.length - 1] < hand)) {
-          ringIsSelected = false
-          pole1.push(hand)
-          return 2
+        if (!this.ringIsSelected) {
+          if (this.pole3.length > 0) {
+            this.ringIsSelected = true
+            this.hand = this.pole3.pop()
+            return 1
+          } else return 0
+        } else {
+          if ((this.pole3.length === 0) || (this.pole3[this.pole3.length - 1] < this.hand)) {
+            this.ringIsSelected = false
+            this.pole3.push(this.hand)
+            return 2
+          }
         }
-      }
-      break
+        break
     }
   }
 
