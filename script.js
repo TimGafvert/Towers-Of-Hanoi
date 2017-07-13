@@ -40,9 +40,12 @@ $(document).ready(function () {
             ringIsSelected = true
             hand = pole1.pop()
             handDisplay = pole1Display.children().last()
+            pole1Display.children().last().detach()
           }
         } else {
-            pole1.push(hand)
+          ringIsSelected = false
+          pole1.push(hand)
+          pole1Display.append(handDisplay)
         }
         break
       case 2:
@@ -50,9 +53,13 @@ $(document).ready(function () {
         if (pole2.length > 0) {
           ringIsSelected = true
           hand = pole2.pop()
+          handDisplay = pole2Display.children().last()
+          pole2Display.children().last().detach()
         }
       } else {
-          pole2.push(hand)
+        ringIsSelected = false
+        pole2.push(hand)
+        pole2Display.append(handDisplay)
       }
       break
       case 3:
@@ -60,9 +67,13 @@ $(document).ready(function () {
         if (pole3.length > 0) {
           ringIsSelected = true
           hand = pole3.pop()
+          handDisplay = pole3Display.children().last()
+          pole3Display.children().last().detach()
         }
       } else {
-          pole3.push(hand)
+        ringIsSelected = false
+        pole3.push(hand)
+        pole3Display.append(handDisplay)
       }
       break
     }
