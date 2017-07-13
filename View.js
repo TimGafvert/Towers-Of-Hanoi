@@ -4,13 +4,10 @@ class View {
   }
   init () {   // target relevant elements
     this.inputs = {  // inputs here
-      ringSmallDisplay :$('#ringSmall'),
-      ringMediumDisplay : $('#ringMedium'),
-      ringLargeDisplay : $('#ringLarge'),
       handDisplay,
-      pole1Display : $('#pole1'),
-      pole2Display : $('#pole2'),
-      pole3Display : $('#pole3')
+      pole1Display: $('#pole1'),
+      pole2Display: $('#pole2'),
+      pole3Display: $('#pole3')
     }
     this.listen()
   }
@@ -18,6 +15,7 @@ class View {
                 // When a pole is clicked, select pole to get or place a ring
     this.inputs.pole1Display.on('click', function () {
       selectPole(1)
+      console.log("CLICK")
     })
     this.inputs.pole2Display.on('click', function () {
       selectPole(2)
@@ -28,63 +26,42 @@ class View {
   }
 }
 
+  // Check if you are holding a ring, if not, pick one up. If yes, try to place the ring.
+  // 1 = pick up, 2 = place, 0 = do nothing
 
-
-
-
-
-  // Check if you are holding a ring, if not, pick one up. If yes, try to place the ring
-    function selectPole (num) {
-      switch (num) {
-        case 1:
-          if (!ringIsSelected) {
-            if (pole1.length > 0) {
-              ringIsSelected = true
-              hand = pole1.pop()
-              handDisplay = pole1Display.children().last()
-              pole1Display.children().last().detach()
-            }
-          } else {
-            if ((pole1.length === 0) || (pole1[pole1.length - 1] < hand)) {
-              ringIsSelected = false
-              pole1.push(hand)
-              pole1Display.append(handDisplay)
-            }
-          }
-          break
-        case 2:
-          if (!ringIsSelected) {
-            if (pole2.length > 0) {
-              ringIsSelected = true
-              hand = pole2.pop()
-              handDisplay = pole2Display.children().last()
-              pole2Display.children().last().detach()
-            }
-          } else {
-            if ((pole2.length === 0) || (pole2[pole2.length - 1] < hand)) {
-              ringIsSelected = false
-              pole2.push(hand)
-              pole2Display.append(handDisplay)
-            }
-          }
-          break
-        case 3:
-          if (!ringIsSelected) {
-            if (pole3.length > 0) {
-              ringIsSelected = true
-              hand = pole3.pop()
-              handDisplay = pole3Display.children().last()
-              pole3Display.children().last().detach()
-            }
-          } else {
-            if ((pole3.length === 0) || (pole3[pole3.length - 1] < hand)) {
-              ringIsSelected = false
-              pole3.push(hand)
-              pole3Display.append(handDisplay)
-            }
-          }
-          break
-      }
+function selectPole (num) {
+  var action = this.model.selectPoleLogic(num)
+  switch (num) {
+    case 1:
+    if (action === 1) {
+      handDisplay = pole1Display.children().last()
+      pole1Display.children().last().detach()
+    } else if (action === 2) {
+      pole1Display.append(handDisplay)
     }
-
+    break
+    case 2:
+    if (action === 1) {
+      handDisplay = pole2Display.children().last()
+      pole2Display.children().last().detach()
+    } else if (action === 2) {
+      pole2Display.append(handDisplay)
+    }
+    break
+    case 3:
+    if (action === 1) {
+      handDisplay = pole3Display.children().last()
+      pole3Display.children().last().detach()
+    } else if (action === 2) {
+      pole3Display.append(handDisplay)
+    }
+    break
+  }
 }
+
+
+// method/variable graveyard:
+
+  // ringSmallDisplay :$('#ringSmall'),
+  // ringMediumDisplay : $('#ringMedium'),
+  // ringLargeDisplay : $('#ringLarge'),
