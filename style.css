@@ -1,15 +1,3 @@
-/*@@font-face {
-  font-family: myMonumentA;
-  src: url('MonumentA.ttf') format("truetype");
-}*/
-/*@@font-face {
-  font-family: newFont;
-  scr: url(TejaratchiCaps.ttf);
-}*/
-@@font-face {
-  font-family: newFont;
-  scr: url(LETTERS_.TTF);
-}
 
 
 body {
@@ -50,7 +38,7 @@ body {
 }
 
 p {
-  font-family: newFont;
+  font-family: Monoton, cursive;
   font-size: 50pt
 
 }

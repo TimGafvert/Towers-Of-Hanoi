@@ -13,6 +13,26 @@ class Display {
 
     }
     this.listen()
+    this.makeSounds()
+  }
+  makeSounds () {
+    function Sound (src) {
+      this.sound = document.createElement('audio')
+      this.sound.src = src
+      this.sound.setAttribute('preload', 'auto')
+      this.sound.setAttribute('controls', 'none')
+      this.sound.style.display = 'none'
+      document.body.appendChild(this.sound)
+      this.play = function () {
+        this.sound.play()
+      }
+      this.stop = function () {
+        this.sound.pause()
+      }
+    }
+    console.log(this)
+    this.placePiece = new Sound('Sounds/Blast.mp3')
+    this.pickPiece = new Sound('Sounds/Swoosh.mp3')
   }
   listen () {     // associate event listeners with inputs
                 // When a pole is clicked, select pole to get or place a ring
@@ -29,7 +49,6 @@ class Display {
       if (this.model.ringIsSelected === true) {
         this.XxX = event.pageX// - this.displays.handDisplay.width() / 2
         this.YyY = event.pageY// - this.displays.handDisplay.height() / 2
-        console.log(this.XxX)
         this.displays.handDisplay.css({left: this.XxX, top: this.YyY, position: 'absolute'})
       }
     }.bind(this))
@@ -40,31 +59,38 @@ class Display {
 // this.displays.handDisplay.width() / 2
 // this.displays.handDisplay.height() / 2
   selectPole (num) {
-    console.log('selectPole', num)
     var action = this.model.selectPoleLogic(num)
+    var that = this
+    this.makeSounds()
     switch (num) {
       case 1:
         if (action === 1) {
           this.displays.handDisplay = this.displays.pole1Display.children().last()
+          this.pickPiece.play()
         } else if (action === 2) {
           this.displays.pole1Display.append(this.displays.handDisplay)
-          this.displays.handDisplay.css({position: 'static', float: 'none'})
+          this.displays.handDisplay.css({position: 'static'})
+          this.placePiece.play()
         }
         break
       case 2:
         if (action === 1) {
           this.displays.handDisplay = this.displays.pole2Display.children().last()
+          this.pickPiece.play()
         } else if (action === 2) {
           this.displays.pole2Display.append(this.displays.handDisplay)
-          this.displays.handDisplay.css({position: 'static', float: 'none'})
+          this.displays.handDisplay.css({position: 'static'})
+          this.placePiece.play()
         }
         break
       case 3:
         if (action === 1) {
           this.displays.handDisplay = this.displays.pole3Display.children().last()
+          this.pickPiece.play()
         } else if (action === 2) {
           this.displays.pole3Display.append(this.displays.handDisplay)
-          this.displays.handDisplay.css({position: 'static', float: 'none'})
+          this.displays.handDisplay.css({position: 'static'})
+          this.placePiece.play()
         }
         break
       default:
