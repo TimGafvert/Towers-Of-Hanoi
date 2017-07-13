@@ -1,6 +1,6 @@
 class Logic {
   constructor () {
-    this.pole1 = [0, 1, 2]
+    this.pole1 = [0, 1, 2, 3, 4]
     this.pole2 = []
     this.pole3 = []
     this.hand = 0

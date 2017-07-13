@@ -6,17 +6,25 @@ body {
   flex-direction: row;
   justify-content: space-between;
 }
-#ringSmall {
-  width: 150px;
-  height: 100px;
+#ring0 {
+  width: 180px;
+  height: 120px;
 }
-#ringMedium {
-  width: 200px;
-  height: 133px;
+#ring1 {
+  width: 210px;
+  height: 140px;
 }
-#ringLarge {
-  width: 250px;
-  height: 166px;
+#ring2 {
+  width: 240px;
+  height: 160px;
+}
+#ring3 {
+  width: 270px;
+  height: 180px;
+}
+#ring4 {
+  width: 300px;
+  height: 200px;
 
 }
 
@@ -35,7 +43,7 @@ div {
 .pole {
 background: #D3D3D3;
 width: 300px;
-height: 800px;
+height: 1000px;
 margin: 0 auto;
 display: flex;
 flex-direction: column-reverse;
