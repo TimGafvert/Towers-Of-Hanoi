@@ -1,91 +1,75 @@
 /* global $ */
 $(document).ready(function () {
-  var ringSmall = $('#ringSmall')
-  var ringMedium = $('#ringMedium')
-  var ringLarge = $('#ringLarge')
-  var pole1 = $('#pole1')
-  var pole2 = $('#pole2')
-  var pole3 = $('#pole3')
+  var ringSmallDisplay = $('#ringSmall')
+  var ringMediumDisplay = $('#ringMedium')
+  var ringLargeDisplay = $('#ringLarge')
+  var pole1 = [0, 1, 2], pole2 = [], pole3 = []
+  var hand = 0
+  var handDisplay
+  var pole1Display = $('#pole1')
+  var pole2Display = $('#pole2')
+  var pole3Display = $('#pole3')
   var selectedPole
   var selectedRing
   var comparedRing
   var ringIsSelected = false
 
-
-  console.log(($(' #pole3 div:last-child').toString()))
-
-  pole1.on('click', selectPole.bind(null, 1))
-  pole2.on('click', selectPole.bind(null, 2))
-  pole3.on('click', selectPole.bind(null, 3))
+  // When a pole is clicked, select pole to get or place a ring
+  pole1Display.on('click', function () {
+    selectPole(1)
+  })
+  pole2Display.on('click', function () {
+    selectPole(2)
+  })
+  pole3Display.on('click', function () {
+    selectPole(3)
+  })
   function checkIfLegal (ring) {
-    this.ring = ring
 
-    if ((this.ring === ringLarge) || (this.ring.toString() === "[object Object]") || ((this.ring === ringMedium) && (selectedRing === ringSmall))) {
-    selectedPole.append(selectedRing)
-    ringIsSelected = false
-    }
+    // selectedPole.append(selectedRing)
+    // ringIsSelected = false
+
   }
-  comparedRing = $(' #pole1 div:last-child')
 
+// Check if you are holding a ring, if not, pick one up. If yes, try to place the ring
   function selectPole (num) {
     switch (num) {
       case 1:
-      selectedPole = pole1
         if (!ringIsSelected) {
-          ringIsSelected = true
-          selectedRing = $(' #pole1 div:last-child')
-          selectedRing.detach()
-          console.log(selectedPole)
+          if (pole1.length > 0) {
+            ringIsSelected = true
+            hand = pole1.pop()
+            handDisplay = pole1Display.children().last()
+          }
         } else {
-          checkIfLegal($(' #pole1 div:last-child'))
-
+            pole1.push(hand)
         }
         break
       case 2:
-      selectedPole = pole2
       if (!ringIsSelected) {
-        ringIsSelected = true
-        selectedRing = $(' #pole2 div:last-child')
-        selectedRing.detach()
-        console.log(selectedPole)
+        if (pole2.length > 0) {
+          ringIsSelected = true
+          hand = pole2.pop()
+        }
       } else {
-        checkIfLegal($(' #pole2 div:last-child'))
-
+          pole2.push(hand)
       }
       break
       case 3:
-      selectedPole = pole3
       if (!ringIsSelected) {
-        ringIsSelected = true
-        selectedRing = $(' #pole3 div:last-child')
-        selectedRing.detach()
-        console.log(selectedPole)
+        if (pole3.length > 0) {
+          ringIsSelected = true
+          hand = pole3.pop()
+        }
       } else {
-        checkIfLegal($(' #pole3 div:last-child'))
-
+          pole3.push(hand)
       }
       break
     }
   }
 })
 
-// ringSmall.on('click', selectRing.bind(null, 1))
-// ringMedium.on('click', selectRing.bind(null, 2))
-// ringLarge.on('click', selectRing.bind(null, 3))
+// selectedRing.detach()
+// selectedRing = pole1Display.children().last()
 
-// function selectRing (size) {
-//   switch (size) {
-//     case 1:
-//       $('#ringSmall').detach()
-//       pole2.append(ringSmall)
-//       break
-//     case 2:
-//       $('#ringMedium').detach()
-//       pole2.append(ringMedium)
-//       break
-//     case 3:
-//       $('#ringLarge').detach()
-//       pole2.append(ringLarge)
-//       break
-//   }
-// }
+  //  checkIfLegal($(' #pole1 div:last-child'))
