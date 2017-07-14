@@ -42,6 +42,20 @@ p {
   font-size: 50pt
 
 }
+/*h1 {
+    text-align: center;
+    position: absolute;
+}*/
+h1 {
+   display:inline;
+   width:1400px;
+   text-align:center;
+     position: absolute;
+     font-family: Monoton, cursive;
+     font-size: 40pt;
+     padding; 30;
+     margin: 0;
+}
 
 
 div {
