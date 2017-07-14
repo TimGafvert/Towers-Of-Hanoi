@@ -3,8 +3,9 @@ class Display {
   constructor (model) {
     this.model = model   // store the model as a property
   }
-  init () {   // target relevant elements
-    // this.displays.handDisplay.css({position: 'static'})
+  init () {
+   // target relevant elements
+
     this.displays = {  // inputs here
       handDisplay: $('#ring0'),
       pole1Display: $('#pole1'),
@@ -13,9 +14,11 @@ class Display {
       body: $('body')
 
     }
+    for (var i = 0; i < 2; i++) {
+      this.displays.pole1Display.append(this.displays.pole3Display.children().first())
+    }
 
     this.model.init()
-    this.listen()
     this.makeSounds()
   }
   makeSounds () {
@@ -33,7 +36,6 @@ class Display {
         this.sound.pause()
       }
     }
-    console.log(this)
     this.placePiece = new Sound('Sounds/Blast.mp3')
     this.pickPiece = new Sound('Sounds/Swoosh.mp3')
   }
@@ -62,17 +64,21 @@ class Display {
 // this.displays.handDisplay.width() / 2
 // this.displays.handDisplay.height() / 2
   selectPole (num) {
+    console.log(this.model.gameLogic.ringIsSelected)
     var action = this.model.selectPoleLogic(num)
     this.makeSounds()
     switch (num) {
       case 1:
+      console.log(this.model.gameLogic.ringIsSelected)
         if (action === 1) {
           this.displays.handDisplay = this.displays.pole1Display.children().last()
           this.pickPiece.play()
+          console.log(this.model.gameLogic.ringIsSelected)
         } else if (action === 2) {
           this.displays.pole1Display.append(this.displays.handDisplay)
           this.displays.handDisplay.css({position: 'static'})
           this.placePiece.play()
+          console.log(this.model.gameLogic.ringIsSelected)
         }
         break
       case 2:
@@ -93,6 +99,15 @@ class Display {
           this.displays.pole3Display.append(this.displays.handDisplay)
           this.displays.handDisplay.css({position: 'static'})
           this.placePiece.play()
+          var that = this
+          if (this.model.checkIfWon()) {
+            function winner () {
+              this.alert('YOU ARE A WINNER!!!')
+              that.init()
+              console.log(that)
+            }
+            this.nextStep = setTimeout(winner, 500)
+          }
         }
         break
       default:

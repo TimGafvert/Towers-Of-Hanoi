@@ -13,7 +13,12 @@ class Logic {
 
     }
   }
-
+  checkIfWon () {
+    if (this.gameLogic.pole3.length === 5) {
+      // this.init()
+      return true
+    } else false
+  }
   selectPoleLogic (num) {
     switch (num) {
       case 1:
