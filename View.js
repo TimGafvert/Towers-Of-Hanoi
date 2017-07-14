@@ -14,13 +14,37 @@ class Display {
       body: $('body')
 
     }
-    for (var i = 0; i < 2; i++) {
-      this.displays.pole1Display.append(this.displays.pole3Display.children().first())
-    }
+    this.animateStart(1)
+
+    // for (var i = 0; i < 5; i++) {
+    //   this.displays.pole1Display.append(this.displays.pole3Display.children().first())
+    // }
 
     this.model.init()
     this.makeSounds()
   }
+
+  animateStart (num) {
+    var that = this
+    this.iteration = num
+    if (this.iteration > 5) {
+      setTimeout(function () {
+        for (var i = 0; i < 5; i++) {
+          that.displays.pole1Display.append(that.displays.pole3Display.children().first())
+        }
+      }, 500)
+      return
+    } else {
+      this.iteration++
+      console.log(this.iteration)
+
+      setTimeout(function () {
+        that.animateStart(that.iteration)
+        that.displays.pole3Display.append(that.displays.pole1Display.children().first())
+      }, 750)
+    }
+  }
+
   makeSounds () {
     function Sound (src) {
       this.sound = document.createElement('audio')
@@ -69,7 +93,7 @@ class Display {
     this.makeSounds()
     switch (num) {
       case 1:
-      console.log(this.model.gameLogic.ringIsSelected)
+        console.log(this.model.gameLogic.ringIsSelected)
         if (action === 1) {
           this.displays.handDisplay = this.displays.pole1Display.children().last()
           this.pickPiece.play()

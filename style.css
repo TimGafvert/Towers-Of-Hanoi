@@ -9,6 +9,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   background-image: url(images/temple.jpg);
+  overflow: hidden;
 }
 .ring {
   background-image: url(images/stoneBricks.jpeg);
@@ -44,14 +45,36 @@ p {
 }
 h1 {
    display:inline;
-   width:1400px;
+   width:1425px;
    text-align:center;
      position: absolute;
      font-family: Monoton, cursive;
      font-size: 40pt;
      margin: 0;
 }
-
+.blink_me{
+    animation: color-change 1s infinite;
+    animation: myfirst 4s 1;
+}
+@keyframes myfirst {
+    0%   {text: red; left: 0px; top: 0px;}
+    10%  {text: yellow; left: -200px; top: 0px;}
+    20%  {text: blue; left: 0px; top: 0px;}
+    30%  {text: green; left: -200px; top: 0px;}
+    40% {text: red; left: 0px; top: 0px;}
+    50% {text: red; left: -200px; top: 0px;}
+    60% {text: red; left: 0px; top: 0px;}
+    70% {text: red; left: -200px; top: 0px;}
+    80% {text: red; left: 0px; top: 0px;}
+    90% {text: red; left: -200px; top: 0px;}
+    100% {text: red; left: 0px; top: 0px;}
+}
+/*
+@keyframes color-change {
+    0% { color: #333333; }
+    50% { color: black; }
+    100% { color: #333333; }
+}*/
 
 div {
   width: 150px;
