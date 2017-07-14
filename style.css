@@ -69,12 +69,6 @@ h1 {
     90% {text: red; left: -200px; top: 0px;}
     100% {text: red; left: 0px; top: 0px;}
 }
-/*
-@keyframes color-change {
-    0% { color: #333333; }
-    50% { color: black; }
-    100% { color: #333333; }
-}*/
 
 div {
   width: 150px;

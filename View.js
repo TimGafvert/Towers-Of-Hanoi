@@ -23,23 +23,36 @@ class Display {
     this.model.init()
     this.makeSounds()
   }
-
+  animateEnd (num) {
+    var that = this
+    this.iterationEnd = num
+    if (this.iterationEnd > 5) {
+      that.model.gameLogic.animating = false
+      return
+    } else {
+      this.iterationEnd++
+      console.log(this.iterationEnd)
+      setTimeout(function () {
+        that.model.gameLogic.animating = true
+        that.animateEnd(that.iterationEnd)
+        that.displays.pole1Display.append(that.displays.pole3Display.children().first())
+      }, 300)
+    }
+  }
   animateStart (num) {
     var that = this
     this.iteration = num
     if (this.iteration > 5) {
       setTimeout(function () {
-        for (var i = 0; i < 5; i++) {
-          that.displays.pole1Display.append(that.displays.pole3Display.children().first())
-        }
+        that.animateEnd(1)
       }, 500)
       return
     } else {
       this.iteration++
-      console.log(this.iteration)
 
       setTimeout(function () {
         that.animateStart(that.iteration)
+        that.model.gameLogic.animating = true
         that.displays.pole3Display.append(that.displays.pole1Display.children().first())
       }, 750)
     }
