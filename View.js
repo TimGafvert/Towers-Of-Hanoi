@@ -4,6 +4,7 @@ class Display {
     this.model = model   // store the model as a property
   }
   init () {   // target relevant elements
+    // this.displays.handDisplay.css({position: 'static'})
     this.displays = {  // inputs here
       handDisplay: $('#ring0'),
       pole1Display: $('#pole1'),
@@ -12,6 +13,8 @@ class Display {
       body: $('body')
 
     }
+
+    this.model.init()
     this.listen()
     this.makeSounds()
   }
@@ -46,7 +49,7 @@ class Display {
       this.selectPole(3)
     }.bind(this))
     this.displays.body.mousemove(function (event) {
-      if (this.model.ringIsSelected === true) {
+      if (this.model.gameLogic.ringIsSelected === true) {
         this.XxX = event.pageX// - this.displays.handDisplay.width() / 2
         this.YyY = event.pageY// - this.displays.handDisplay.height() / 2
         this.displays.handDisplay.css({left: this.XxX, top: this.YyY, position: 'absolute'})
@@ -60,7 +63,6 @@ class Display {
 // this.displays.handDisplay.height() / 2
   selectPole (num) {
     var action = this.model.selectPoleLogic(num)
-    var that = this
     this.makeSounds()
     switch (num) {
       case 1:
