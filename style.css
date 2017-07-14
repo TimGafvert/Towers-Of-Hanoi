@@ -12,11 +12,13 @@ body {
   overflow: hidden;
 }
 .ring {
+  pointer-events: none;
   background-image: url(images/stoneBricks.jpeg);
   background-size:cover;
 }
+
+
 #ring0 {
-  float: left;
   width: 180px;
   height: 108px;
 }
@@ -54,9 +56,9 @@ h1 {
 }
 .blink_me{
     animation: color-change 1s infinite;
-    animation: myfirst 4s 1;
+    animation: arrowStart 4s 1;
 }
-@keyframes myfirst {
+@keyframes arrowStart {
     0%   {text: red; left: 0px; top: 0px;}
     10%  {text: yellow; left: -200px; top: 0px;}
     20%  {text: blue; left: 0px; top: 0px;}

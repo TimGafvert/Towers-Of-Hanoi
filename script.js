@@ -4,4 +4,6 @@ $(document).ready(function () {
   const display = new Display(logic)
   display.init()
   display.listen()
+  display.listen2()
+
 })

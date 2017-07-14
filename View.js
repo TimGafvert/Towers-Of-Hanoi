@@ -11,7 +11,9 @@ class Display {
       pole1Display: $('#pole1'),
       pole2Display: $('#pole2'),
       pole3Display: $('#pole3'),
-      body: $('body')
+      body: $('body'),
+      mouseX: 0,
+      mouseY: 0
 
     }
     this.animateStart(1)
@@ -31,7 +33,6 @@ class Display {
       return
     } else {
       this.iterationEnd++
-      console.log(this.iterationEnd)
       setTimeout(function () {
         that.model.gameLogic.animating = true
         that.animateEnd(that.iterationEnd)
@@ -78,6 +79,7 @@ class Display {
   }
   listen () {     // associate event listeners with inputs
                 // When a pole is clicked, select pole to get or place a ring
+
     this.displays.pole1Display.on('click', function () {
       this.selectPole(1)
     }.bind(this))
@@ -87,11 +89,14 @@ class Display {
     this.displays.pole3Display.on('click', function () {
       this.selectPole(3)
     }.bind(this))
-    this.displays.body.mousemove(function (event) {
+  }
+
+  listen2 () {
+    $(document).mousemove(function (e) {
       if (this.model.gameLogic.ringIsSelected === true) {
-        this.XxX = event.pageX// - this.displays.handDisplay.width() / 2
-        this.YyY = event.pageY// - this.displays.handDisplay.height() / 2
-        this.displays.handDisplay.css({left: this.XxX, top: this.YyY, position: 'absolute'})
+        this.displays.mouseX = e.pageX - this.displays.handDisplay.width() * 0.5
+        this.displays.mouseY = e.pageY - this.displays.handDisplay.height() * 0.5
+        this.displays.handDisplay.css({left: this.displays.mouseX, top: this.displays.mouseY, position: 'absolute'})
       }
     }.bind(this))
   }
@@ -101,21 +106,17 @@ class Display {
 // this.displays.handDisplay.width() / 2
 // this.displays.handDisplay.height() / 2
   selectPole (num) {
-    console.log(this.model.gameLogic.ringIsSelected)
     var action = this.model.selectPoleLogic(num)
     this.makeSounds()
     switch (num) {
       case 1:
-        console.log(this.model.gameLogic.ringIsSelected)
         if (action === 1) {
           this.displays.handDisplay = this.displays.pole1Display.children().last()
           this.pickPiece.play()
-          console.log(this.model.gameLogic.ringIsSelected)
         } else if (action === 2) {
           this.displays.pole1Display.append(this.displays.handDisplay)
           this.displays.handDisplay.css({position: 'static'})
           this.placePiece.play()
-          console.log(this.model.gameLogic.ringIsSelected)
         }
         break
       case 2:
@@ -141,7 +142,6 @@ class Display {
             function winner () {
               this.alert('YOU ARE A WINNER!!!')
               that.init()
-              console.log(that)
             }
             this.nextStep = setTimeout(winner, 500)
           }
