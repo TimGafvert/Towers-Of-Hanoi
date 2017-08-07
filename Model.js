@@ -21,53 +21,25 @@ class Logic {
     } else false
   }
   selectPoleLogic (num) {
+    // build the key
+    let poleKey = `pole${num}`
+
+    // pole array by `num`
+    let selectedPole = this.gameLogic[poleKey]
+
     if (!this.gameLogic.animating) {
-      switch (num) {
-        case 1:
-          if (!this.gameLogic.ringIsSelected) {
-            if (this.gameLogic.pole1.length > 0) {
-              this.gameLogic.ringIsSelected = true
-              this.gameLogic.hand = this.gameLogic.pole1.pop()
-              return 1
-            } else return 0
-          } else {
-            if ((this.gameLogic.pole1.length === 0) || (this.gameLogic.pole1[this.gameLogic.pole1.length - 1] < this.gameLogic.hand)) {
-              this.gameLogic.ringIsSelected = false
-              this.gameLogic.pole1.push(this.gameLogic.hand)
-              return 2
-            }
-          }
-          break
-        case 2:
-          if (!this.gameLogic.ringIsSelected) {
-            if (this.gameLogic.pole2.length > 0) {
-              this.gameLogic.ringIsSelected = true
-              this.gameLogic.hand = this.gameLogic.pole2.pop()
-              return 1
-            } else return 0
-          } else {
-            if ((this.gameLogic.pole2.length === 0) || (this.gameLogic.pole2[this.gameLogic.pole2.length - 1] < this.gameLogic.hand)) {
-              this.gameLogic.ringIsSelected = false
-              this.gameLogic.pole2.push(this.gameLogic.hand)
-              return 2
-            }
-          }
-          break
-        case 3:
-          if (!this.gameLogic.ringIsSelected) {
-            if (this.gameLogic.pole3.length > 0) {
-              this.gameLogic.ringIsSelected = true
-              this.gameLogic.hand = this.gameLogic.pole3.pop()
-              return 1
-            } else return 0
-          } else {
-            if ((this.gameLogic.pole3.length === 0) || (this.gameLogic.pole3[this.gameLogic.pole3.length - 1] < this.gameLogic.hand)) {
-              this.gameLogic.ringIsSelected = false
-              this.gameLogic.pole3.push(this.gameLogic.hand)
-              return 2
-            }
-          }
-          break
+      if (!this.gameLogic.ringIsSelected) {
+        if (selectedPole.length > 0) {
+          this.gameLogic.ringIsSelected = true
+          this.gameLogic.hand = selectedPole.pop()
+          return 1
+        } else return 0
+      } else {
+        if ((selectedPole.length === 0) || (selectedPole[selectedPole.length - 1] < this.gameLogic.hand)) {
+          this.gameLogic.ringIsSelected = false
+          selectedPole.push(this.gameLogic.hand)
+          return 2
+        }
       }
     }
   }

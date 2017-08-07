@@ -24,6 +24,7 @@ class Display {
 
     this.model.init()
     this.makeSounds()
+    this.listen()
   }
   animateEnd (num) {
     var that = this
@@ -89,9 +90,9 @@ class Display {
     this.displays.pole3Display.on('click', function () {
       this.selectPole(3)
     }.bind(this))
-  }
 
-  listen2 () {
+    // Set up the ring drag effect
+    // listen2() combined into listen()
     $(document).mousemove(function (e) {
       if (this.model.gameLogic.ringIsSelected === true) {
         this.displays.mouseX = e.pageX - this.displays.handDisplay.width() * 0.5
@@ -107,7 +108,9 @@ class Display {
 // this.displays.handDisplay.height() / 2
   selectPole (num) {
     var action = this.model.selectPoleLogic(num)
-    this.makeSounds()
+
+    // Redundant. makeSounds is already called by init to set up the sounds
+    // this.makeSounds()
     switch (num) {
       case 1:
         if (action === 1) {
